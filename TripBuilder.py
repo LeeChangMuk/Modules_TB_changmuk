@@ -128,7 +128,7 @@ class KakaoCrawler:
 
     def HELP(self):
         print("[get_Detail]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[[PosX,PosY], place_url, detail_category]\n")
-        print("[get_PosXY]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[PosX,PosY]")
+        print("[get_PosXY]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[PosX,PosY]\n")
         print("[get_MapInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:[warranty, map_inform, star, min_price, max_price, avg_price, bus_d, nearest_bus_d, n_station_less_200m]\n")
 
     def get_Detail(self, location, name):
@@ -174,8 +174,7 @@ class KakaoCrawler:
         menu = soup2.find_all("em", attrs={"class": "price_menu"})
         times = soup2.find_all("ul", attrs={"class": "list_operation"})
         price = []
-        for t in times:
-            print("times:",t.get_text())
+
         try:
             for items in menu:
                 prices = items.get_text()[3:]
@@ -207,7 +206,7 @@ class KakaoCrawler:
             for i in faculty_informs:
                 faculty_inform.append(i.text)
         except:
-            faculty_inform = [np.nan]
+            pass
 
         driver.execute_script("window.scrollTo(0, 6000)")
         time.sleep(0.5)
@@ -235,7 +234,6 @@ class KakaoCrawler:
 
             nearest_bus_dist = distances[0]
         except:
-            bus_name_dist = [np.nan]
             nearest_bus_dist = np.nan
 
         return safety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m

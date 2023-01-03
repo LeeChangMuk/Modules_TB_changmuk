@@ -168,5 +168,5 @@ class ExtraCrawler:
         return place, date
 
 ########[EXAMPLE CODE]########
-crawler = NaverCrawler()
-crawler.HELP()
+#crawler = NaverCrawler()
+#crawler.HELP()

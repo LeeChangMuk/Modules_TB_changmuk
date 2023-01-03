@@ -30,7 +30,7 @@ class NaverCrawler:
         start = 1; size = num
         url = f"https://openapi.naver.com/v1/search/blog?query={Search}&start={start}&display={size}"  # json 결과
 
-        for API in API_keys:
+        for API in self.API_keys:
             request = urllib.request.Request(url)
             request.add_header("X-Naver-Client-Id", API["Client_id"])
             request.add_header("X-Naver-Client-Secret", API["Client_secret"])

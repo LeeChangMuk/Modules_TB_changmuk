@@ -106,7 +106,7 @@ class NaverCrawler:
         return inform #
 
 # 카카오 맵
-class KakoCrawler:
+class KakaoCrawler:
     def __init__(self):
         self.API_KEY = "bc5c15facbf4450fd684f4894286c377"
     def get_Detail(self, location, name):

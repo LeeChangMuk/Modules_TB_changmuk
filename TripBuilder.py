@@ -20,8 +20,8 @@ class NaverCrawler:
                     {"client_id":"HSGXhbVLnjvb31S9N_cB","client_secret":"4r9gnASzKU"}]
         self.HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"}
     def HELP(self):
-        print("[get_BlogURL]:input=query,num\n  -query:검색어\n  -num:크롤링 할 글 수 결정\n  >>output:[url1, url2, ...]")
-        print("\n[get_BlogInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:\"안녕하세요. 오늘은 ...\", [img1, img2, ...]")
+        print("[get_BlogURL]:input=query,num\n  -query:검색어\n  -num:크롤링 할 글 수 결정\n  >>output:[url1, url2, ...]\n")
+        print("[get_BlogInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:\"안녕하세요. 오늘은 ...\", [img1, img2, ...]\n")
         print("\n[get_NaverPlace]:input=location,name\n  -location:장소 위치\n  -name:장소명\n  >>output:[category, tel_num, review, extra_inform]")
     def get_BlogURL(self,query,num):
         keyword = ["상권분석", "부동산", "방문자리뷰수", "리뷰수", "소셜커머스", "금리", "매물", "매매", "급등", "광고"]

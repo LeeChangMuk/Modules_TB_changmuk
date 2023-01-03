@@ -142,6 +142,19 @@ class KakaoCrawler:
         return position_XY
     def get_PlaceInfo(self):
         return 0
+    def test(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')        # Head-less 설정
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        driver = webdriver.Chrome('chromedriver', options=options)
+ 
+        #해당 url로 이동
+        url = "https://www.naver.com/" 
+        driver.get(url)
+
+        update = driver.find_element(By.CSS_SELECTOR,'#NM_TS_ROLLING_WRAP .news')
+        print(update.text)
 
 # 트위터
 class TwitCrawler:

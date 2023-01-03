@@ -126,6 +126,11 @@ class KakaoCrawler:
         self.options.add_argument('--disable-dev-shm-usage')
         self.driver = webdriver.Chrome('chromedriver', options=self.options)
 
+    def HELP(self):
+        print("[get_Detail]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[[PosX,PosY], place_url, detail_category]\n")
+        print("[get_PosXY]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[PosX,PosY]")
+        print("[get_MapInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:[warranty, map_inform, star, min_price, max_price, avg_price, bus_d, nearest_bus_d, n_station_less_200m]\n")
+
     def get_Detail(self, location, name):
         url = f"https://dapi.kakao.com/v2/local/search/keyword.json?query={location + ' ' + name}"
 
@@ -159,13 +164,10 @@ class KakaoCrawler:
             position_XY = [np.nan, np.nan]
         return position_XY
 
-    def get_PlaceInfo(self):
-        return 0
-
-    def test(self,url):
+    def get_MapInfo(self,url):
         driver = self.driver
         driver.get(url)
-        time.sleep(1)
+        time.sleep(0.5)
 
         html = driver.page_source
         soup2 = BeautifulSoup(html, 'lxml')  # html.parse
@@ -236,7 +238,7 @@ class KakaoCrawler:
             bus_name_dist = [np.nan]
             nearest_bus_dist = np.nan
 
-        return safety_warranty, detail_category, faculty_inform, position_XY, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
+        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
 
 # 트위터
 class TwitCrawler:

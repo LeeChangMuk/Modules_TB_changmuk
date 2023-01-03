@@ -32,8 +32,8 @@ class NaverCrawler:
 
         for API in self.API_keys:
             request = urllib.request.Request(url)
-            request.add_header("X-Naver-Client-Id", API["Client_id"])
-            request.add_header("X-Naver-Client-Secret", API["Client_secret"])
+            request.add_header("X-Naver-Client-Id", API["client_id"])
+            request.add_header("X-Naver-Client-Secret", API["client_secret"])
             response = urllib.request.urlopen(request)
             rescode = response.getcode()
             blog_url = []
@@ -54,7 +54,7 @@ class NaverCrawler:
     def get_BlogInfo(self,url,img):
         cont = ''; imgs = []
         try:
-            response = requests.get(URL)
+            response = requests.get(url)
             soup = BeautifulSoup(response.text, 'html.parser')
             ifra = soup.find('iframe', id='mainFrame')
             post_url = 'https://blog.naver.com' + ifra['src']

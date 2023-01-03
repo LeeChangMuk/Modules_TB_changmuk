@@ -170,8 +170,10 @@ class KakaoCrawler:
         html = driver.page_source
         soup2 = BeautifulSoup(html, 'lxml')  # html.parse
         menu = soup2.find_all("em", attrs={"class": "price_menu"})
-        time = soup2.find_all("ul", attrs={"class": "list_operation"})
+        times = soup2.find_all("ul", attrs={"class": "list_operation"})
         price = []
+        for t in times:
+            print("times:",t.get_text())
         try:
             for items in menu:
                 prices = items.get_text()[3:]

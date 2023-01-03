@@ -51,7 +51,7 @@ class NaverCrawler:
                 continue
 
         return blog_url
-    def get_BlogInfo(self,url,img):
+    def get_BlogInfo(self,url,img=False):
         cont = ''; imgs = []
         try:
             response = requests.get(url)

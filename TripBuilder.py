@@ -30,10 +30,10 @@ class NaverCrawler:
             "[get_NaverPlace]:input=location,name\n  -location:장소 위치\n  -name:장소명\n  >>output:[category, tel_num, review, extra_inform]")
 
     def get_BlogURL(self, query, num):
-        keyword = ["상권분석", "부동산", "방문자리뷰수", "리뷰수", "소셜커머스", "금리", "매물", "매매", "급등", "광고"]
+        keyword = ["전세","월세","푸르지오","이편한세상","유찰","토지","입주","정책","대출","금융","은행","임대","분","상권분석","부동산","방문자리뷰수","리뷰수","소셜커머스","금리","매물","매매","급등","광고","급락","창업","한국학","주간지"]
         Search = urllib.parse.quote(query)
 
-        start = 1;
+        start = 1
         size = num
         url = f"https://openapi.naver.com/v1/search/blog?query={Search}&start={start}&display={size}"  # json 결과
 
@@ -236,7 +236,7 @@ class KakaoCrawler:
         except:
             nearest_bus_dist = np.nan
 
-        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
+        return ㄴsafety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
 
 # 트위터
 class TwitCrawler:

@@ -15,6 +15,7 @@ class Colab_Alert:
     def getID(self):
         ck = 0;
         t = 1
+        print("Send \"\\getID\" in chatting")
         while (1):
             url = self.ID_URL
             res = requests.get(url)
@@ -22,16 +23,16 @@ class Colab_Alert:
             respond = res.json()["result"][-1]["message"]["text"]
             if respond == "/getID" and ck == 0:
                 id = res.json()["result"][-1]["message"]["from"]["id"]
-                sendMessage(id, id)
-                sendMessage(id, "If you checked, please send \"OK\"")
+                self.sendMessage(id, id)
+                self.sendMessage(id, "If you checked, please send \"OK\"")
                 ck = 1
             if (
                     respond == "OK" or respond == "ok" or respond == "Ok" or respond == "oK" or respond == "ㅇㅋ") and ck != 0:
                 id = res.json()["result"][-1]["message"]["from"]["id"]
-                sendMessage(id, "\"OK\" Sign Checked.")
+                self.sendMessage(id, "\"OK\" Sign Checked.")
                 break
 
             elif ck == 1:
-                sendMessage(id, "Please send \"OK\"")
+                self.sendMessage(id, "Please send \"OK\"")
                 t = 3
             time.sleep(t)

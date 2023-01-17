@@ -13,6 +13,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+import Colab_Alert
 
 # 네이버 검색/블로그/플레이스 등
 class NaverCrawler:

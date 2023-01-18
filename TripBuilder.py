@@ -40,8 +40,11 @@ class NaverCrawler:
             request = urllib.request.Request(url)
             request.add_header("X-Naver-Client-Id", API["client_id"])
             request.add_header("X-Naver-Client-Secret", API["client_secret"])
-            response = urllib.request.urlopen(request)
-            rescode = response.getcode()
+            try:
+                response = urllib.request.urlopen(request)
+                rescode = response.getcode()
+            except:
+                continue
             blog_url = []
             if (rescode == 200):
                 response_body = response.read()

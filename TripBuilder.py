@@ -245,7 +245,7 @@ class KakaoCrawler:
         except:
             nearest_bus_dist = np.nan
 
-        return ㄴsafety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
+        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
 
 # 트위터
 class TwitCrawler:

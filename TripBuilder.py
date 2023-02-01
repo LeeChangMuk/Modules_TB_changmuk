@@ -217,16 +217,16 @@ class KakaoCrawler:
         except:
             pass
 
-        driver.execute_script("window.scrollTo(0, 6000)")
-        time.sleep(0.5)
-        html = driver.page_source
-        soup2 = BeautifulSoup(html, 'lxml')  # html.parse
-        bus_informs = soup2.find_all("div", attrs={"class": "ride_wayout"})
+        #driver.execute_script("window.scrollTo(0, 6000)")
+        #time.sleep(0.5)
+        #html = driver.page_source
+        #soup2 = BeautifulSoup(html, 'lxml')  # html.parse
+        #bus_informs = soup2.find_all("div", attrs={"class": "ride_wayout"})
 
-        distances = []
-        bus_name_dist = []
-        num_station_less_200m = 0
-
+        #distances = []
+        #bus_name_dist = []
+        #num_station_less_200m = 0
+        """
         try:
             for inform in bus_informs:
                 station_name = inform.find("span", attrs={"class": "txt_busstop"}).get_text()
@@ -244,8 +244,8 @@ class KakaoCrawler:
             nearest_bus_dist = distances[0]
         except:
             nearest_bus_dist = np.nan
-
-        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price, bus_name_dist, nearest_bus_dist, num_station_less_200m
+         """
+        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price #, bus_name_dist, nearest_bus_dist, num_station_less_200m
 
 # 트위터
 class TwitCrawler:

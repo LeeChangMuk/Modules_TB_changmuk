@@ -130,11 +130,11 @@ class NaverCrawler:
 class KakaoCrawler:
     def __init__(self):
         self.API_KEY = "bc5c15facbf4450fd684f4894286c377"
-        self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--headless')  # Head-less 설정
-        self.options.add_argument('--no-sandbox')
-        self.options.add_argument('--disable-dev-shm-usage')
-        self.driver = webdriver.Chrome('chromedriver', options=self.options)
+        #self.options = webdriver.ChromeOptions()
+        #self.options.add_argument('--headless')  # Head-less 설정
+        #self.options.add_argument('--no-sandbox')
+        #self.options.add_argument('--disable-dev-shm-usage')
+        #self.driver = webdriver.Chrome('chromedriver', options=self.options)
 
     def HELP(self):
         print("[get_Detail]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[[PosX,PosY], place_url, detail_category]\n")
@@ -173,7 +173,7 @@ class KakaoCrawler:
         except:
             position_XY = [np.nan, np.nan]
         return position_XY
-
+    """ [수정중]
     def get_MapInfo(self,url):
         driver = self.driver
         driver.get(url)
@@ -228,6 +228,7 @@ class KakaoCrawler:
         #bus_name_dist = []
         #num_station_less_200m = 0
         """
+        """
         try:
             for inform in bus_informs:
                 station_name = inform.find("span", attrs={"class": "txt_busstop"}).get_text()
@@ -246,7 +247,7 @@ class KakaoCrawler:
         except:
             nearest_bus_dist = np.nan
          """
-        return safety_warranty, faculty_inform, star, min_price, max_price, avg_price #, bus_name_dist, nearest_bus_dist, num_station_less_200m
+        #return safety_warranty, faculty_inform, star, min_price, max_price, avg_price #, bus_name_dist, nearest_bus_dist, num_station_less_200m
 
 # 트위터
 class TwitCrawler:

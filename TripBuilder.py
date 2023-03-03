@@ -139,7 +139,7 @@ class KakaoCrawler:
         print("[get_PosXY]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[PosX,PosY]\n")
         print("[get_MapInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:[warranty, map_inform, star, min_price, max_price, avg_price, bus_d, nearest_bus_d, n_station_less_200m]\n")
 
-    def get_Detail(self, name):
+    def get_Detail(self, name, version=0):
         url = f"https://dapi.kakao.com/v2/local/search/keyword.json?query={name}"
 
         result = requests.get(url, headers={"Authorization": f"KakaoAK {self.API_KEY}"})
@@ -154,7 +154,7 @@ class KakaoCrawler:
             phone_num = json_obj['documents'][0]['phone']
             category = json_obj['documents'][0]['category_group_name']
             cate_2 = json_obj['documents'][0]['category_name']
-            cate_2 = cate_2.split('>')[-2].strip()
+            cate_2 = cate_2.split('>')[-(1+version)].strip()
 
             ck_valid = 1
 

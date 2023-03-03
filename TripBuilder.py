@@ -246,8 +246,7 @@ class KakaoCrawler:
         #distances = []
         #bus_name_dist = []
         #num_station_less_200m = 0
-        """
-        """
+        
         try:
             for inform in bus_informs:
                 station_name = inform.find("span", attrs={"class": "txt_busstop"}).get_text()

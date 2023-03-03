@@ -154,7 +154,7 @@ class KakaoCrawler:
             phone_num = json_obj['documents'][0]['phone']
             category = json_obj['documents'][0]['category_group_name']
             cate_2 = json_obj['documents'][0]['category_name']
-            cate_2 = cate2.split('>')[-2].strip()
+            cate_2 = cate_2.split('>')[-2].strip()
 
             ck_valid = 1
 

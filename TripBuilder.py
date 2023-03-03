@@ -57,6 +57,7 @@ class NaverCrawler:
                 response_body = response.read()
                 msg = response_body.decode('utf-8')
                 blog = json.loads(msg)['items']
+                tot_num = json.loads(msg)['total']
                 for blog_info in blog:
                     for word in keyword:
                         if (word in blog_info['title'].split(" ")):
@@ -66,7 +67,7 @@ class NaverCrawler:
             else:
                 continue
 
-        return blog_url
+        return blog_url, tot_num
 
     def get_BlogInfo(self, url, img=False):
         cont = '';

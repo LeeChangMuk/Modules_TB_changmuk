@@ -156,6 +156,9 @@ class KakaoCrawler:
             cate_2 = json_obj['documents'][0]['category_name']
             cate_2 = cate_2.split('>')[-(1+version)].strip()
 
+            if len(phone_num)==0:
+                phone_num = np.nan
+            
             ck_valid = 1
 
             if category in self.place_filter:

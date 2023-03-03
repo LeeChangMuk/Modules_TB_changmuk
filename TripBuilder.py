@@ -130,19 +130,17 @@ class NaverCrawler:
 class KakaoCrawler:
     def __init__(self):
         self.API_KEY = "bc5c15facbf4450fd684f4894286c377"
-        #self.options = webdriver.ChromeOptions()
-        #self.options.add_argument('--headless')  # Head-less 설정
-        #self.options.add_argument('--no-sandbox')
-        #self.options.add_argument('--disable-dev-shm-usage')
-        #self.driver = webdriver.Chrome('chromedriver', options=self.options)
+        self.place_filter = ["문화시설","관광명소","숙박"]
+        self.rest_filter = ["음식점"]
+        self.cafe_filter = ["카페"]
 
     def HELP(self):
         print("[get_Detail]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[[PosX,PosY], place_url, detail_category]\n")
         print("[get_PosXY]:input=location,name\n  -location:위치\n  -name:장소명\n  >>output:[PosX,PosY]\n")
         print("[get_MapInfo]:input=url,image\n  -url:블로그 링크\n  -image:TRUE/FALSE,이미지까지 크롤링할지 결정\n  >>output:[warranty, map_inform, star, min_price, max_price, avg_price, bus_d, nearest_bus_d, n_station_less_200m]\n")
 
-    def get_Detail(self, location, name):
-        url = f"https://dapi.kakao.com/v2/local/search/keyword.json?query={location + ' ' + name}"
+    def get_Detail(self, name):
+        url = f"https://dapi.kakao.com/v2/local/search/keyword.json?query={name}"
 
         result = requests.get(url, headers={"Authorization": f"KakaoAK {self.API_KEY}"})
         json_obj = result.json()
@@ -153,12 +151,33 @@ class KakaoCrawler:
             place_url = json_obj['documents'][0]['place_url']
             detail_category = json_obj['documents'][0]['category_name']
             position_XY = [x_position, y_position]
-        except:
-            position_XY = [np.nan, np.nan]
-            place_url = np.nan
-            detail_category = np.nan
+            phone_num = json_obj['documents'][0]['phone']
+            category = json_obj['documents'][0]['category_group_name']
+            cate2 = json_obj['documents'][0]['category_name']
+            cate2 = cate2.split('>')[-2].strip()
 
-        return position_XY, place_url, detail_category
+            ck_valid = 1
+
+            if category in self.place_filter:
+              cate_1 = "관광지"
+            elif category in self.rest_filter:
+              cate_1 = "음식점"
+            elif category in self.cafe_filter:
+              cate_1 = "카페"
+            else:
+              ck_valid = 0
+
+        except:
+            ck_valid = 0
+            
+        if(ck_valid == 0):
+          position_XY = [np.nan, np.nan]
+          place_url = np.nan
+          cate_1 = np.nan
+          cate_2 = np.nan
+          phone_num = np.nan
+        
+        return position_XY, place_url, cate_1, cate_2, phone_num
 
     def get_PosXY(self, location, name):
         url = f"https://dapi.kakao.com/v2/local/search/keyword.json?query={location + ' ' + name}"

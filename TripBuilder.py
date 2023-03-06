@@ -35,6 +35,31 @@ class NaverCrawler:
         print(
             "[get_NaverPlace]:input=location,name\n  -location:장소 위치\n  -name:장소명\n  >>output:[category, tel_num, review, extra_inform]")
 
+    def get_numTxt(self, query):
+        Search = urllib.parse.quote(query)
+
+        url = f"https://openapi.naver.com/v1/search/blog?query={Search}"  # json 결과
+
+        for API in self.API_keys:
+            request = urllib.request.Request(url)
+            request.add_header("X-Naver-Client-Id", API["client_id"])
+            request.add_header("X-Naver-Client-Secret", API["client_secret"])
+            try:
+                response = urllib.request.urlopen(request)
+                rescode = response.getcode()
+            except:
+                continue
+            blog_url = []
+            if (rescode == 200):
+                response_body = response.read()
+                msg = response_body.decode('utf-8')
+                tot_num = json.loads(msg)['total']
+                break
+            else:
+                continue
+
+        return tot_num
+        
     def get_BlogURL(self, query, num):
         keyword = ["전세","월세","푸르지오","이편한세상","유찰","토지","입주","정책","대출","금융","은행","임대","분","상권분석","부동산","방문자리뷰수","리뷰수","소셜커머스","금리","매물","매매","급등","광고","급락","창업","한국학","주간지"]
         Search = urllib.parse.quote(query)

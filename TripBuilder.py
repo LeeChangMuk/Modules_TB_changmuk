@@ -16,8 +16,8 @@ from selenium.webdriver.common.by import By
 # 네이버 검색/블로그/플레이스 등
 class NaverCrawler:
     def __init__(self):
-        self.API_keys = [{"client_id": "0mK4JnoFJM1CPYWNlG80", "client_secret": "UMINhUjvKQ"},
-                         {"client_id": "HSGXhbVLnjvb31S9N_cB", "client_secret": "4r9gnASzKU"},
+        self.API_keys = [{"client_id": "HSGXhbVLnjvb31S9N_cB", "client_secret": "4r9gnASzKU"},
+                         {"client_id": "0mK4JnoFJM1CPYWNlG80", "client_secret": "UMINhUjvKQ"},
                          {"client_id": "9DUnlYmUPuQJlQht6UTE", "client_secret": "G3mYUv08Vh"},
                          {"client_id": "Ya1J27IktsR8oawUscJa", "client_secret": "Ax9N8UnIYG"},
                          {"client_id": "q5Vw2F_nDa8imGweLrUN", "client_secret": "bN1fQ6iG4e"},

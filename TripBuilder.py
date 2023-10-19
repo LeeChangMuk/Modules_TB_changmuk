@@ -81,7 +81,11 @@ class NaverCrawler:
             if (rescode == 200):
                 response_body = response.read()
                 msg = response_body.decode('utf-8')
-                blog = json.loads(msg)['items']
+                try :
+                    blog = json.loads(msg)['items']
+                except KeyError :
+                    print("Error: 'items' key not found in the API response.")
+                    return [], 0
                 tot_num = json.loads(msg)['total']
                 for blog_info in blog:
                     for word in keyword:
